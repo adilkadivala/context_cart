@@ -22,6 +22,7 @@ const Product = () => {
     price: "",
     image: null,
   });
+  
 
   // Form mode state
   const [isUpdateMode, setIsUpdateMode] = useState(false);

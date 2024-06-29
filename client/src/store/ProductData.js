@@ -16,7 +16,7 @@ export const ItemStorage = ({ children }) => {
   // Getting item
   const getItem = async () => {
     try {
-      const response = await axios.get("http://localhost:5236/getproduct");
+      const response = await axios.get("http://localhost:5225/getproduct");
       setItem(response.data);
     } catch (error) {
       console.error("Error fetching item list:", error);

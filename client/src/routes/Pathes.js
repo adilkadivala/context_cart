@@ -2,9 +2,11 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "../pages/admin/Dashboard";
 import Product from "../pages/admin/Product";
+import SignIn from "../pages/auth/SignIn";
+import SignUp from "../pages/auth/SignIn";
 import Hero from "../pages/public/Hero";
 
-const MainAr = () => {
+const Pathes = () => {
   return (
     <>
       <Routes>
@@ -28,6 +30,26 @@ const MainAr = () => {
         ></Route>
         <Route
           exact
+          path="/signup"
+          element={
+            <>
+              <SignUp />
+            </>
+          }
+        ></Route>
+        <Route
+          exact
+          path="/login"
+          element={
+            <>
+              <SignIn />
+            </>
+          }
+        ></Route>
+
+        {/* client */}
+        <Route
+          exact
           path="/"
           element={
             <>
@@ -40,4 +62,4 @@ const MainAr = () => {
   );
 };
 
-export default MainAr;
+export default Pathes;
