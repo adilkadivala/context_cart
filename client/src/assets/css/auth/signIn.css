@@ -2,7 +2,6 @@
   max-width: 450px;
   margin: auto;
   text-align: center;
-  
 }
 .container * {
   box-sizing: border-box;
@@ -43,6 +42,7 @@
   border: none;
   color: white;
   background: #15cd72;
+  cursor: pointer;
 }
 
 .login-forgot {
