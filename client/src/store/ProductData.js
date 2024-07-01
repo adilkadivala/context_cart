@@ -72,7 +72,16 @@ export const ItemStorage = ({ children }) => {
 
   return (
     <ItemData.Provider
-      value={{ item, cart, user, login, logout, addToCart, removeFromCart }}
+      value={{
+        item,
+        setItem,
+        cart,
+        user,
+        login,
+        logout,
+        addToCart,
+        removeFromCart,
+      }}
     >
       {children}
     </ItemData.Provider>

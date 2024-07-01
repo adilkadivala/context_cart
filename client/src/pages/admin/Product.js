@@ -22,7 +22,6 @@ const Product = () => {
     price: "",
     image: null,
   });
-  
 
   // Form mode state
   const [isUpdateMode, setIsUpdateMode] = useState(false);
@@ -38,13 +37,13 @@ const Product = () => {
 
     try {
       const url = isUpdateMode
-        ? `http://localhost:5236/updateproduct/${formData.id}`
-        : "http://localhost:5236/postproduct";
+        ? `http://localhost:5225/updateproduct/${formData.id}`
+        : "http://localhost:5225/postproduct";
       const method = isUpdateMode ? "put" : "post";
       const response = await axios[method](url, formdata);
 
       if (response.status === 200) {
-        const refreshData = await axios.get("http://localhost:5236/getproduct");
+        const refreshData = await axios.get("http://localhost:5225/getproduct");
         setItem(refreshData.data);
         setFormData({
           title: "",
@@ -89,10 +88,10 @@ const Product = () => {
   const deleteItems = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:5236/deleteproduct/${itemId}`
+        `http://localhost:5225/deleteproduct/${itemId}`
       );
       if (response.status === 200) {
-        const response = await axios.get("http://localhost:5236/getproduct");
+        const response = await axios.get("http://localhost:5225/getproduct");
         setItem(response.data);
         closeDeleteModal();
         toast.success("Deleted successfully");
