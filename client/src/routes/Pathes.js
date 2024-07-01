@@ -1,64 +1,32 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "../pages/admin/Dashboard";
 import Product from "../pages/admin/Product";
 import SignIn from "../pages/auth/SignIn";
-import SignUp from "../pages/auth/SignIn";
 import Hero from "../pages/public/Hero";
+import { useItemData } from "../store/ProductData";
+
+const PrivateRoute = ({ element }) => {
+  const { user } = useItemData();
+  return user ? element : <Navigate to="/login" />;
+};
 
 const Pathes = () => {
-  return (
-    <>
-      <Routes>
-        <Route
-          exact
-          path="/dashboard"
-          element={
-            <>
-              <Dashboard />
-            </>
-          }
-        ></Route>
-        <Route
-          exact
-          path="/product"
-          element={
-            <>
-              <Product />
-            </>
-          }
-        ></Route>
-        <Route
-          exact
-          path="/signup"
-          element={
-            <>
-              <SignUp />
-            </>
-          }
-        ></Route>
-        <Route
-          exact
-          path="/login"
-          element={
-            <>
-              <SignIn />
-            </>
-          }
-        ></Route>
+  const { user } = useItemData();
 
-        {/* client */}
-        <Route
-          exact
-          path="/"
-          element={
-            <>
-              <Hero />
-            </>
-          }
-        ></Route>
-      </Routes>
-    </>
+  return (
+    <Routes>
+      <Route
+        path="/dashboard"
+        element={<PrivateRoute element={<Dashboard />} />}
+      />
+      <Route path="/product" element={<PrivateRoute element={<Product />} />} />
+      <Route
+        path="/login"
+        element={user ? <Navigate to="/dashboard" /> : <SignIn />}
+      />
+      <Route path="/" element={<Hero />} />
+    </Routes>
   );
 };
 
