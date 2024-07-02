@@ -15,7 +15,7 @@ export const ItemStorage = ({ children }) => {
   // Getting item
   const getItem = async () => {
     try {
-      const response = await axios.get("http://localhost:5225/getproduct");
+      const response = await axios.get("http://localhost:5234/getproduct");
       setItem(response.data);
     } catch (error) {
       console.error("Error fetching item list:", error);
@@ -25,7 +25,7 @@ export const ItemStorage = ({ children }) => {
   // auth data for login
   const login = async (email, password) => {
     try {
-      const result = await axios.get("http://localhost:5225/getauth");
+      const result = await axios.get("http://localhost:5234/getauth");
       const aboutUser = result.data;
 
       const user = aboutUser.find((u) => {
