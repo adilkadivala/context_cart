@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import "../../../assets/css/public/style.css";
 import { NavLink } from "react-router-dom";
 import { useItemData } from "../../../store/ProductData";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { cart, removeFromCart } = useItemData();
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
   const handleCartClick = () => {
     setIsCartOpen(!isCartOpen);
@@ -19,7 +21,49 @@ const Navbar = () => {
             <i className="fas fa-shopping-cart"></i> Add to Cart
           </NavLink>
 
-          <div className="icons">
+          <div
+            className="icons"
+            style={{
+              display: "flex",
+              columnGap: "0.5rem",
+              alignItems: "center",
+            }}
+          >
+            <div>
+              {isAuthenticated ? (
+                <button
+                  style={{
+                    backgroundColor: "transparent",
+                    padding: "0.5rem 0.7rem",
+                    fontSize: "1.2rem",
+                    cursor: "pointer",
+                    border: "1px solid #000011",
+                    borderRadius: "0.3rem",
+                  }}
+                  onClick={() =>
+                    logout({
+                      logoutParams: { returnTo: window.location.origin },
+                    })
+                  }
+                >
+                  Log Out
+                </button>
+              ) : (
+                <button
+                  style={{
+                    backgroundColor: "transparent",
+                    padding: "0.5rem 0.7rem",
+                    fontSize: "1.2rem",
+                    cursor: "pointer",
+                    border: "1px solid #000011",
+                    borderRadius: "0.3rem",
+                  }}
+                  onClick={() => loginWithRedirect()}
+                >
+                  Login
+                </button>
+              )}
+            </div>
             <button
               style={{
                 background: "none",

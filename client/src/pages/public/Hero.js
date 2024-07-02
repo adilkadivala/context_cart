@@ -7,6 +7,7 @@ const Hero = () => {
   return (
     <div>
       <Navbar />
+      
       <Product />
     </div>
   );
